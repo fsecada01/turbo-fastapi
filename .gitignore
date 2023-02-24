@@ -48,3 +48,4 @@ node_modules
 
 *.bat
 .venv
+!docs/make.bat
