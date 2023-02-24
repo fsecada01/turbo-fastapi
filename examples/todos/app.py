@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
-from turbo_flask import Turbo
+from turbo_fastapi import Turbo
 from models import Todo
 
 app = Flask(__name__)

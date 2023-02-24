@@ -1,8 +1,8 @@
-# turbo-flask
+# turbo-fastapi
 
-[![Build status](https://github.com/miguelgrinberg/turbo-flask/workflows/build/badge.svg)](https://github.com/miguelgrinberg/turbo-flask/actions) [![codecov](https://codecov.io/gh/miguelgrinberg/turbo-flask/branch/main/graph/badge.svg)](https://codecov.io/gh/miguelgrinberg/turbo-flask)
+[![Build status](https://github.com/fsecada01/turbo-FastAPI/workflows/build/badge.svg)](https://github.com/fsecada01/turbo-FastAPI/actions) [![codecov](https://codecov.io/gh/fsecada01/turbo-FastAPI/branch/main/graph/badge.svg)](https://codecov.io/gh/fsecada01/turbo-FastAPI)
 
-Integration of Hotwire's Turbo library with Flask, to allow you to create
+Integration of Hotwire's Turbo library with FastAPI, to allow you to create
 applications that look and feel like single-page apps without using
 JavaScript.
 
@@ -11,6 +11,6 @@ JavaScript.
 Resources
 ---------
 
--  [Documentation](https://turbo-flask.readthedocs.io/en/latest/)
--  [PyPI](https://pypi.python.org/pypi/turbo-flask)
--  [Change Log](https://github.com/miguelgrinberg/turbo-flask/blob/main/CHANGES.md)
+-  [Documentation](https://turbo-FastAPI.readthedocs.io/en/latest/)
+-  [PyPI](https://pypi.python.org/pypi/turbo-FastAPI)
+-  [Change Log](https://github.com/fsecada01/turbo-FastAPI/blob/main/CHANGES.md)

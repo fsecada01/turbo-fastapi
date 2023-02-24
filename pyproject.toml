@@ -1,3 +1,9 @@
+[project]
+dynamic = ['dependencies']
+
+[tool.setuptools.dynamic]
+dependencies  = {file = ['core_requirements.txt']}
+
 [build-system]
 requires = [
     "setuptools>=42",

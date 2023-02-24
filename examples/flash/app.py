@@ -4,7 +4,7 @@ import sys
 import threading
 import time
 from flask import Flask, render_template, request, flash
-from turbo_flask import Turbo
+from turbo_fastapi import Turbo
 
 app = Flask(__name__)
 app.secret_key = 'top-secret!'

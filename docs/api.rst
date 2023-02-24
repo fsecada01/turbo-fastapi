@@ -1,6 +1,6 @@
 API Reference
 -------------
 
-.. autoclass:: turbo_flask.Turbo
+.. autoclass:: turbo_fastapi.Turbo
    :inherited-members:
    :members:

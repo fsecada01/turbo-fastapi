@@ -17,9 +17,9 @@ sys.path.insert(0, os.path.abspath('../src'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Turbo-Flask'
-copyright = '2021, Miguel Grinberg'
-author = 'Miguel Grinberg'
+project = 'Turbo-FastAPI'
+copyright = '2021, Francis Secada'
+author = 'Francis Secada'
 
 
 # -- General configuration ---------------------------------------------------
@@ -57,8 +57,8 @@ html_css_files = [
 ]
 
 html_theme_options = {
-    'github_user': 'miguelgrinberg',
-    'github_repo': 'turbo-flask',
+    'github_user': 'fsecada01',
+    'github_repo': 'turbo-fastapi',
     'github_banner': True,
     'github_button': True,
     'github_type': 'star',

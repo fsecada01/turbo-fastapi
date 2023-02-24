@@ -1,0 +1,6 @@
+-c core_requirements.txt
+
+jupyterlab
+jupyterlab-code-formatter
+isort
+nb-black @ git+https://github.com/dnanhkhoa/nb_black.git

@@ -6,7 +6,7 @@ How to Install
 
 ::
 
-    pip install turbo-flask
+    pip install turbo-fastapi
 
 
 How to Add to your Project
@@ -15,7 +15,7 @@ How to Add to your Project
 Direct initialization::
 
     from flask import Flask
-    from turbo_flask import Turbo
+    from turbo_fastapi import Turbo
 
     app = Flask(__name__)
     turbo = Turbo(app)
@@ -23,7 +23,7 @@ Direct initialization::
 Factory function initialization::
 
     from flask import Flask
-    from turbo_flask import Turbo
+    from turbo_fastapi import Turbo
 
     turbo = Turbo()
 
@@ -33,7 +33,7 @@ Factory function initialization::
 
         return app
 
-To add Turbo-Flask to your pages, include ``{{ turbo() }}`` in the ``<head>``
+To add Turbo-FastAPI to your pages, include ``{{ turbo() }}`` in the ``<head>``
 element of your main Jinja template::
 
     <!doctype html>
@@ -180,7 +180,7 @@ following example can be used as a starting point::
     }
 
 The WebSocket support in this extension is provided by the
-`Flask-Sock <https://github.com/miguelgrinberg/flask-sock>`_ package, which
+`Flask-Sock <https://github.com/fsecada01/flask-sock>`_ package, which
 supports WebSocket servers based on Gunicorn, Eventlet, Gevent and the Flask
 development web server. Refer to the Flask-Sock documentation for additional
 deployment details.

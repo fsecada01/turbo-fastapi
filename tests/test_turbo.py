@@ -3,13 +3,13 @@ from unittest import mock
 import pytest
 from flask import Flask, render_template_string
 from werkzeug.exceptions import NotFound
-import turbo_flask
+import turbo_fastapi
 
 
 class TestTurbo(unittest.TestCase):
     def test_direct_create(self):
         app = Flask(__name__)
-        turbo_flask.Turbo(app)
+        turbo_fastapi.Turbo(app)
 
         @app.route('/test')
         def test():
@@ -25,7 +25,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_indirect_create(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo()
+        turbo = turbo_fastapi.Turbo()
         turbo.init_app(app)
 
         @app.route('/test')
@@ -43,7 +43,7 @@ class TestTurbo(unittest.TestCase):
     def test_create_custom_ws(self):
         app = Flask(__name__)
         app.config['TURBO_WEBSOCKET_ROUTE'] = '/ws'
-        turbo_flask.Turbo(app)
+        turbo_fastapi.Turbo(app)
 
         @app.route('/test')
         def test():
@@ -62,7 +62,7 @@ class TestTurbo(unittest.TestCase):
     def test_create_no_ws(self):
         app = Flask(__name__)
         app.config['TURBO_WEBSOCKET_ROUTE'] = None
-        turbo_flask.Turbo(app)
+        turbo_fastapi.Turbo(app)
 
         @app.route('/test')
         def test():
@@ -78,7 +78,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_create_custom_turbo_version(self):
         app = Flask(__name__)
-        turbo_flask.Turbo(app)
+        turbo_fastapi.Turbo(app)
 
         @app.route('/test')
         def test():
@@ -94,7 +94,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_create_latest_turbo_version(self):
         app = Flask(__name__)
-        turbo_flask.Turbo(app)
+        turbo_fastapi.Turbo(app)
 
         @app.route('/test')
         def test():
@@ -110,7 +110,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_create_custom_turbo_url(self):
         app = Flask(__name__)
-        turbo_flask.Turbo(app)
+        turbo_fastapi.Turbo(app)
 
         @app.route('/test')
         def test():
@@ -126,14 +126,14 @@ class TestTurbo(unittest.TestCase):
 
     def test_requested_frame(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
 
         with app.test_request_context('/', headers={'Turbo-Frame': 'foo'}):
             assert turbo.requested_frame() == 'foo'
 
     def test_can_stream(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
 
         with app.test_request_context('/', headers={'Accept': 'text/html'}):
             assert not turbo.can_stream()
@@ -143,7 +143,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_can_push(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
 
         assert not turbo.can_push()
         turbo.clients = {'123': 'client'}
@@ -153,7 +153,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_streams(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
 
         actions = ['append', 'prepend', 'replace', 'update', 'after', 'before']
         for action in actions:
@@ -168,7 +168,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_stream_response(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
 
         with app.test_request_context('/'):
             r = turbo.stream([turbo.append('foo', 'bar'), turbo.remove('baz')])
@@ -183,7 +183,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_push(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
         turbo.clients = {'123': [mock.MagicMock()], '456': [mock.MagicMock()]}
 
         expected_stream = (
@@ -200,7 +200,7 @@ class TestTurbo(unittest.TestCase):
 
     def test_push_to(self):
         app = Flask(__name__)
-        turbo = turbo_flask.Turbo(app)
+        turbo = turbo_fastapi.Turbo(app)
         turbo.clients = {'123': [mock.MagicMock()], '456': [mock.MagicMock()]}
 
         expected_stream = (
