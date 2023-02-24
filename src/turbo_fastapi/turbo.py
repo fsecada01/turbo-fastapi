@@ -1,12 +1,12 @@
 import uuid
+
 from fastapi import Request, WebSocket
-from websockets import ConnectionClosed
 from markupsafe import Markup
+from websockets import ConnectionClosed
 
-
-_CDN = 'https://cdn.jsdelivr.net'
-_PKG = '@hotwired/turbo'
-_VER = '7.2.2'
+_CDN = "https://cdn.jsdelivr.net"
+_PKG = "@hotwired/turbo"
+_VER = "7.2.2"
 
 
 class Turbo:
@@ -18,8 +18,9 @@ class Turbo:
             self.init_app(app)
 
     def init_app(self, app):
-        ws_route = app.config.setdefault('TURBO_WEBSOCKET_ROUTE',
-                                         '/turbo-stream')
+        ws_route = app.config.setdefault(
+            "TURBO_WEBSOCKET_ROUTE", "/turbo-stream"
+        )
         if ws_route:
             self.sock = WebSocket()
 
@@ -52,16 +53,19 @@ class Turbo:
                     default version and CDN.
         """
         if url is None:
-            v = ''
+            v = ""
             if version is not None:
-                v = f'@{version}'
-            url = f'{_CDN}/npm/{_PKG}{v}/dist/turbo.es2017-umd.js'
-        ws_route = Request.app.config.get('TURBO_WEBSOCKET_ROUTE',
-                                          '/turbo-stream')
+                v = f"@{version}"
+            url = f"{_CDN}/npm/{_PKG}{v}/dist/turbo.es2017-umd.js"
+        ws_route = Request.app.config.get(
+            "TURBO_WEBSOCKET_ROUTE", "/turbo-stream"
+        )
         if ws_route:
-            return Markup(f'''<script src="{url}"></script>
+            return Markup(
+                f"""<script src="{url}"></script>
 <script>Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//${{location.host}}{ws_route}`));</script>
-''')  # noqa: E501
+"""
+            )  # noqa: E501
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
 
@@ -84,17 +88,18 @@ class Turbo:
         return uuid.uuid4().hex
 
     def context_processor(self):
-        return {'turbo': self.turbo}
+        return {"turbo": self.turbo}
 
     def requested_frame(self):
         """Returns the target frame the client expects, or ``None``."""
-        return Request.headers.get('Turbo-Frame')
+        return Request.headers.get("Turbo-Frame")
 
     def can_stream(self):
         """Returns ``True`` if the client accepts turbo stream reponses."""
-        stream_mimetype = 'text/vnd.turbo-stream.html'
-        best = Request.accept_mimetypes.best_match([
-            stream_mimetype, 'text/html'])
+        stream_mimetype = "text/vnd.turbo-stream.html"
+        best = Request.accept_mimetypes.best_match(
+            [stream_mimetype, "text/html"]
+        )
         return best == stream_mimetype
 
     def can_push(self, to=None):
@@ -110,8 +115,10 @@ class Turbo:
         return to in self.clients
 
     def _make_stream(self, action, content, target):
-        return (f'<turbo-stream action="{action}" target="{target}">'
-                f'<template>{content}</template></turbo-stream>')
+        return (
+            f'<turbo-stream action="{action}" target="{target}">'
+            f"<template>{content}</template></turbo-stream>"
+        )
 
     def append(self, content, target):
         """Create an append stream.
@@ -119,7 +126,7 @@ class Turbo:
         :param content: the HTML content to include in the stream.
         :param target: the target ID for this change.
         """
-        return self._make_stream('append', content, target)
+        return self._make_stream("append", content, target)
 
     def prepend(self, content, target):
         """Create a prepend stream.
@@ -127,7 +134,7 @@ class Turbo:
         :param content: the HTML content to include in the stream.
         :param target: the target ID for this change.
         """
-        return self._make_stream('prepend', content, target)
+        return self._make_stream("prepend", content, target)
 
     def replace(self, content, target):
         """Create a replace stream.
@@ -135,7 +142,7 @@ class Turbo:
         :param content: the HTML content to include in the stream.
         :param target: the target ID for this change.
         """
-        return self._make_stream('replace', content, target)
+        return self._make_stream("replace", content, target)
 
     def update(self, content, target):
         """Create an update stream.
@@ -143,14 +150,14 @@ class Turbo:
         :param content: the HTML content to include in the stream.
         :param target: the target ID for this change.
         """
-        return self._make_stream('update', content, target)
+        return self._make_stream("update", content, target)
 
     def remove(self, target):
         """Create a remove stream.
 
         :param target: the target ID for this change.
         """
-        return self._make_stream('remove', '', target)
+        return self._make_stream("remove", "", target)
 
     def after(self, content, target):
         """Create an after stream.
@@ -158,7 +165,7 @@ class Turbo:
         :param content: the HTML content to include in the stream.
         :param target: the target ID for this change.
         """
-        return self._make_stream('after', content, target)
+        return self._make_stream("after", content, target)
 
     def before(self, content, target):
         """Create an before stream.
@@ -166,7 +173,7 @@ class Turbo:
         :param content: the HTML content to include in the stream.
         :param target: the target ID for this change.
         """
-        return self._make_stream('before', content, target)
+        return self._make_stream("before", content, target)
 
     def stream(self, stream):
         """Create a turbo stream response.
@@ -176,7 +183,8 @@ class Turbo:
                        and ``remove()`` methods.
         """
         return Request.app.response_class(
-            stream, mimetype='text/vnd.turbo-stream.html')
+            stream, mimetype="text/vnd.turbo-stream.html"
+        )
 
     def push(self, stream, to=None):
         """Push a turbo stream update over WebSocket to one or more clients.
@@ -190,10 +198,10 @@ class Turbo:
         """
         if to is None:
             to = self.clients.keys()
-        elif not hasattr(to, '__len__') or isinstance(to, str):
+        elif not hasattr(to, "__len__") or isinstance(to, str):
             to = [to]
-        if hasattr(stream, '__len__') and not isinstance(stream, str):
-            stream = ''.join(stream)
+        if hasattr(stream, "__len__") and not isinstance(stream, str):
+            stream = "".join(stream)
         for recipient in to:
             for ws in self.clients[recipient]:
                 try:
