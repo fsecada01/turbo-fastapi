@@ -47,3 +47,4 @@ node_modules
 .python-version
 
 *.bat
+.venv
