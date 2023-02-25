@@ -14,21 +14,21 @@ How to Add to your Project
 
 Direct initialization::
 
-    from flask import Flask
+    from fastapi import FastAPI
     from turbo_fastapi import Turbo
 
-    app = Flask(__name__)
+    app = FastAPI(__name__)
     turbo = Turbo(app)
 
 Factory function initialization::
 
-    from flask import Flask
+    from fastapi import FastAPI
     from turbo_fastapi import Turbo
 
     turbo = Turbo()
 
     def create_app():
-        app = Flask(__name__)
+        app = FastAPI(__name__)
         turbo.init_app(app)
 
         return app

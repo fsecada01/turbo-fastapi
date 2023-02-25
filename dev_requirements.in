@@ -4,3 +4,5 @@ jupyterlab
 jupyterlab-code-formatter
 isort
 nb-black @ git+https://github.com/dnanhkhoa/nb_black.git
+pytest
+werkzeug

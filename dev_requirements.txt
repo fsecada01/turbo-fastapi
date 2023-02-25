@@ -24,7 +24,9 @@ arrow==1.2.3
 asttokens==2.2.1
     # via stack-data
 attrs==22.2.0
-    # via jsonschema
+    # via
+    #   jsonschema
+    #   pytest
 babel==2.11.0
     # via jupyterlab-server
 backcall==0.2.0
@@ -47,6 +49,7 @@ colorama==0.4.6
     # via
     #   click
     #   ipython
+    #   pytest
 comm==0.1.2
     # via ipykernel
 debugpy==1.6.6
@@ -55,6 +58,8 @@ decorator==5.1.1
     # via ipython
 defusedxml==0.7.1
     # via nbconvert
+exceptiongroup==1.1.0
+    # via pytest
 executing==1.2.0
     # via stack-data
 fastjsonschema==2.16.2
@@ -67,6 +72,8 @@ idna==3.4
     #   anyio
     #   jsonschema
     #   requests
+iniconfig==2.0.0
+    # via pytest
 ipykernel==6.21.2
     # via
     #   nbclassic
@@ -157,6 +164,7 @@ markupsafe==2.1.2
     #   -c core_requirements.txt
     #   jinja2
     #   nbconvert
+    #   werkzeug
 matplotlib-inline==0.1.6
     # via
     #   ipykernel
@@ -202,6 +210,7 @@ packaging==23.0
     #   jupyterlab
     #   jupyterlab-server
     #   nbconvert
+    #   pytest
 pandocfilters==1.5.0
     # via nbconvert
 parso==0.8.3
@@ -214,6 +223,8 @@ platformdirs==3.0.0
     # via
     #   black
     #   jupyter-core
+pluggy==1.0.0
+    # via pytest
 prometheus-client==0.16.0
     # via
     #   jupyter-server
@@ -233,6 +244,8 @@ pygments==2.14.0
     #   nbconvert
 pyrsistent==0.19.3
     # via jsonschema
+pytest==7.2.1
+    # via -r dev_requirements.in
 python-dateutil==2.8.2
     # via
     #   arrow
@@ -298,6 +311,7 @@ tomli==2.0.1
     # via
     #   black
     #   jupyterlab
+    #   pytest
 tornado==6.2
     # via
     #   ipykernel
@@ -336,6 +350,8 @@ webencodings==0.5.1
     #   tinycss2
 websocket-client==1.5.1
     # via jupyter-server
+werkzeug==2.2.3
+    # via -r dev_requirements.in
 y-py==0.5.9
     # via
     #   jupyter-ydoc

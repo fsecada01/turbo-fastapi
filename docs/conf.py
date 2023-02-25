@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("../src"))
 # -- Project information -----------------------------------------------------
 
 project = "Turbo-FastAPI"
-copyright = "2021, Francis Secada"
+copyright = "2023, Francis Secada"
 author = "Francis Secada"
 
 
